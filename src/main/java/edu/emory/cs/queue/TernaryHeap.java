@@ -6,7 +6,7 @@ import java.util.List;
 
 
 public class TernaryHeap<T extends Comparable<T>> extends AbstractPriorityQueue<T> {
-    private List<T> keys;
+    public List<T> keys;
 
     public TernaryHeap(Comparator<T> comparator) {
         super(comparator);
@@ -40,19 +40,40 @@ public class TernaryHeap<T extends Comparable<T>> extends AbstractPriorityQueue<
 
 
     //Check over with TA
-    private void swim(int k) {
-        while (1 < k && comparator.compare(keys.get((k+1)/3), keys.get(k)) < 0) {
-            Collections.swap(keys, (k+1) / 3, k);
-            k /= 3;
+    public void swim(int k) {
+        while (1 < k && comparator.compare(keys.get(((k+3)-2)/3), keys.get(k)) < 0) {
+            Collections.swap(keys, ((k+3)-2)/3, k);
+            k = ((k+3)-2)/3;
         }
     }
 
-    private void sink(int k) {
-        for (int i = k * 2; i <= size(); k = i, i *= 2) {
-            if (i < size() && comparator.compare(keys.get(i), keys.get(i + 1)) < 0) i++;
-            if (comparator.compare(keys.get(k), keys.get(i)) >= 0) break;
+
+
+    public void sink(int k) {
+        for (int i=3*k; i<=size(); k=i,i*=3)
+        {
+            if(i>1 && keys.get(i)!=null && comparator.compare(keys.get(i), keys.get(i-1)) <=0)
+            {
+                i--;
+                if(i>1 && i<size()-1 && keys.get(i)!=null && comparator.compare(keys.get(i), keys.get(i+2))<=0)
+                {
+                    i+=2;
+                }
+            }
+            else if(i>1 && i<size() && keys.get(i)!=null && comparator.compare(keys.get(i), keys.get(i+1))<=0)
+            {
+                i++;
+            }
+
+            if (comparator.compare(keys.get(k), keys.get(i)) >= 0)
+            {
+                break;
+            }
+
             Collections.swap(keys, k, i);
-        }
-    }
 
+
+        }
+
+    }
 }

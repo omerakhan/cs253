@@ -32,11 +32,11 @@ public class PriorityQueueTest {
     public void testAccuracy() {
         List<Integer> keys = List.of(4, 1, 3, 2, 5, 6, 8, 3, 4, 7, 5, 9, 7);
 
-        testAccuracy(new LazyPriorityQueue<>(), Comparator.reverseOrder(), new ArrayList<>(keys));
+        testAccuracy(new TernaryHeap<Integer>(), Comparator.reverseOrder(), new ArrayList<>(keys));
         testAccuracy(new EagerPriorityQueue<>(), Comparator.reverseOrder(), new ArrayList<>(keys));
         testAccuracy(new BinaryHeap<>(), Comparator.reverseOrder(), new ArrayList<>(keys));
 
-        testAccuracy(new LazyPriorityQueue<Integer>(Comparator.reverseOrder()), Comparator.naturalOrder(), new ArrayList<>(keys));
+        testAccuracy(new TernaryHeap<Integer>(Comparator.reverseOrder()), Comparator.naturalOrder(), new ArrayList<>(keys));
         testAccuracy(new EagerPriorityQueue<Integer>(Comparator.reverseOrder()), Comparator.naturalOrder(), new ArrayList<>(keys));
         testAccuracy(new BinaryHeap<Integer>(Comparator.reverseOrder()), Comparator.naturalOrder(), new ArrayList<>(keys));
     }
@@ -54,7 +54,7 @@ public class PriorityQueueTest {
 
     @Test
     public void testSpeed() {
-        testSpeed(new LazyPriorityQueue<>(), new EagerPriorityQueue<>(), new BinaryHeap<>());
+        testSpeed(new TernaryHeap<>(), new BinaryHeap<>());
     }
 
     @SafeVarargs
@@ -108,14 +108,6 @@ public class PriorityQueueTest {
         t.remove += et - st;
     }
 
-//    @Test
-//    public void testNaryHeap() {
-//        List<Integer> keys = List.of(4, 1, 3, 2, 5, 6, 8, 3, 4, 7, 5, 9, 7);
-//        testAccuracy(new NaryHeap<>(3), Comparator.reverseOrder(), new ArrayList<>(keys));
-//        testAccuracy(new NaryHeap<Integer>(3, Comparator.reverseOrder()), Comparator.naturalOrder(), new ArrayList<>(keys));
-//        testSpeed(new NaryHeap<>(2), new NaryHeap<>(3), new NaryHeap<>(4), new NaryHeap<>(5), new NaryHeap<>(6));
-//    }
-
     @Test
     public void testTernaryHeap() {
         List<Integer> keys = List.of(4, 1, 3, 2, 5, 6, 8, 3, 4, 7, 5, 9, 7);
@@ -123,5 +115,11 @@ public class PriorityQueueTest {
         testAccuracy(new TernaryHeap<Integer>(Comparator.reverseOrder()), Comparator.naturalOrder(), new ArrayList<>(keys));
     }
 
-
+//    @Test
+//    public void testNaryHeap() {
+//        List<Integer> keys = List.of(4, 1, 3, 2, 5, 6, 8, 3, 4, 7, 5, 9, 7);
+//        testAccuracy(new NaryHeap<>(3), Comparator.reverseOrder(), new ArrayList<>(keys));
+//        testAccuracy(new NaryHeap<Integer>(3, Comparator.reverseOrder()), Comparator.naturalOrder(), new ArrayList<>(keys));
+//        testSpeed(new NaryHeap<>(2), new NaryHeap<>(3), new NaryHeap<>(4), new NaryHeap<>(5), new NaryHeap<>(6));
+//    }
 }
