@@ -111,6 +111,7 @@ public class PriorityQueueTest {
     @Test
     public void testTernaryHeap() {
         List<Integer> keys = List.of(4, 1, 3, 2, 5, 6, 8, 3, 4, 7, 5, 9, 7);
+        keys = Arrays.stream(Utils.getRandomIntArray(new Random(1), 1000)).boxed().collect(Collectors.toList());
         testAccuracy(new TernaryHeap<>(), Comparator.reverseOrder(), new ArrayList<>(keys));
         testAccuracy(new TernaryHeap<Integer>(Comparator.reverseOrder()), Comparator.naturalOrder(), new ArrayList<>(keys));
     }
