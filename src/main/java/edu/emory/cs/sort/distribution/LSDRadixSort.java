@@ -13,35 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package edu.emory.cs.sort.comparison;
-
-import edu.emory.cs.sort.AbstractSort;
-
-import java.util.Comparator;
+package edu.emory.cs.sort.distribution;
 
 /**
  * @author Jinho D. Choi ({@code jinho.choi@emory.edu})
  */
-public class SelectionSort<T extends Comparable<T>> extends AbstractSort<T> {
-    public SelectionSort() {
-        this(Comparator.naturalOrder());
-    }
-
-    public SelectionSort(Comparator<T> comparator) {
-        super(comparator);
-    }
-
+public class LSDRadixSort extends RadixSort {
     @Override
-    public void sort(T[] array, final int beginIndex, final int endIndex) {
-        for (int i = beginIndex; i < endIndex - 1; i++) {
-            int min = i;
-
-            for (int j = i + 1; j < endIndex; j++) {
-                if (compareTo(array, j, min) < 0)
-                    min = j;
-            }
-
-            swap(array, i, min);
+    public void sort(Integer[] array, int beginIndex, int endIndex) {
+        int maxBit = getMaxBit(array, beginIndex, endIndex);
+        for (int bit = 0; bit < maxBit; bit++) {
+            int div = (int) Math.pow(10, bit);
+            sort(array, beginIndex, endIndex, k -> k / div);
         }
     }
 }

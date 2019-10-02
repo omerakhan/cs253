@@ -13,35 +13,32 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package edu.emory.cs.sort.comparison;
+package edu.emory.cs.sort.distribution;
 
-import edu.emory.cs.sort.AbstractSort;
-
-import java.util.Comparator;
+import java.util.function.Function;
 
 /**
  * @author Jinho D. Choi ({@code jinho.choi@emory.edu})
  */
-public class SelectionSort<T extends Comparable<T>> extends AbstractSort<T> {
-    public SelectionSort() {
-        this(Comparator.naturalOrder());
-    }
+public class IntegerBucketSort extends BucketSort<Integer> {
+    private final int GAP;
 
-    public SelectionSort(Comparator<T> comparator) {
-        super(comparator);
+    /**
+     * @param min the minimum integer (inclusive).
+     * @param max the maximum integer (exclusive).
+     */
+    public IntegerBucketSort(int min, int max) {
+        super(max - min);
+        GAP = -min;
     }
 
     @Override
-    public void sort(T[] array, final int beginIndex, final int endIndex) {
-        for (int i = beginIndex; i < endIndex - 1; i++) {
-            int min = i;
+    public void sort(Integer[] array, int beginIndex, int endIndex) {
+        sort(array, beginIndex, endIndex, null);
+    }
 
-            for (int j = i + 1; j < endIndex; j++) {
-                if (compareTo(array, j, min) < 0)
-                    min = j;
-            }
-
-            swap(array, i, min);
-        }
+    @Override
+    protected int getBucketIndex(Integer key, Function<Integer, Integer> f) {
+        return key + GAP;
     }
 }

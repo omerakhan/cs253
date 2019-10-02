@@ -36,6 +36,7 @@ public class MergeSort<T extends Comparable<T>> extends AbstractSort<T> {
         super(comparator);
     }
 
+
     @Override
     public void sort(T[] array, int beginIndex, int endIndex) {
         if (beginIndex + 1 >= endIndex) return;
@@ -48,6 +49,7 @@ public class MergeSort<T extends Comparable<T>> extends AbstractSort<T> {
         // merge partitions
         merge(array, beginIndex, middleIndex, endIndex);
     }
+
 
     /**
      * @param beginIndex  the beginning index of the 1st half (inclusive).

@@ -31,7 +31,8 @@ public class QuickSort<T extends Comparable<T>> extends AbstractSort<T> {
         super(comparator);
     }
 
-    @Override
+
+
     public void sort(T[] array, int beginIndex, int endIndex) {
         // at least one key in the range
         if (beginIndex >= endIndex) return;
@@ -42,6 +43,8 @@ public class QuickSort<T extends Comparable<T>> extends AbstractSort<T> {
         // sort right partition
         sort(array, pivotIndex + 1, endIndex);
     }
+
+
 
     protected int partition(T[] array, int beginIndex, int endIndex) {
         int fst = beginIndex, snd = endIndex;

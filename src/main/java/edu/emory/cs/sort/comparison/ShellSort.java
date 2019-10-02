@@ -55,6 +55,7 @@ public abstract class ShellSort<T extends Comparable<T>> extends InsertionSort<T
             sort(array, beginIndex, endIndex, sequence.get(i));
         }
 
+
     }
 
     /**
