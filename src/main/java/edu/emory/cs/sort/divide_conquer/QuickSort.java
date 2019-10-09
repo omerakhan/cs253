@@ -37,6 +37,7 @@ public class QuickSort<T extends Comparable<T>> extends AbstractSort<T> {
         // at least one key in the range
         if (beginIndex >= endIndex) return;
 
+
         int pivotIndex = partition(array, beginIndex, endIndex);
         // sort left partition
         sort(array, beginIndex, pivotIndex);
@@ -44,10 +45,22 @@ public class QuickSort<T extends Comparable<T>> extends AbstractSort<T> {
         sort(array, pivotIndex + 1, endIndex);
     }
 
+    protected void InsertionSort(T[] array, int beginIndex, int endIndex, final int h) {
+        int begin_h = beginIndex + h;
+
+        for (int i = begin_h; i < endIndex; i++)
+            for (int j = i; j >= begin_h && compareTo(array, j, j - h) < 0; j -= h)
+                swap(array, j, j - h);
+    }
 
 
     protected int partition(T[] array, int beginIndex, int endIndex) {
         int fst = beginIndex, snd = endIndex;
+
+        if(endIndex-beginIndex<10)
+        {
+            InsertionSort(array,beginIndex,endIndex,1);
+        }
 
         while (true) {
             // Find where endIndex > fst > pivot

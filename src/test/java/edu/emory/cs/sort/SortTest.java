@@ -16,13 +16,9 @@
 package edu.emory.cs.sort;
 
 import edu.emory.cs.sort.comparison.HeapSort;
-import edu.emory.cs.sort.comparison.InsertionSort;
-import edu.emory.cs.sort.comparison.SelectionSort;
 import edu.emory.cs.sort.comparison.ShellSortKnuth;
 import edu.emory.cs.sort.distribution.IntegerBucketSort;
 import edu.emory.cs.sort.distribution.LSDRadixSort;
-import edu.emory.cs.sort.distribution.MSDRadixSort;
-import edu.emory.cs.sort.divide_conquer.IntroSort;
 import edu.emory.cs.sort.divide_conquer.MergeSort;
 import edu.emory.cs.sort.divide_conquer.QuickSort;
 import org.junit.Test;
@@ -42,11 +38,9 @@ public class SortTest {
     @Test
     public void testAccuracy() {
         final int iter = 100;
-        final int size = 100;
+        final int size = 1000;
 
 
-        testAccuracy(iter, size, new MSDRadixSort());
-        testAccuracy(iter, size, new LSDRadixSort());
     }
 
     private void testAccuracy(final int iter, final int size, AbstractSort<Integer> engine) {
@@ -57,10 +51,12 @@ public class SortTest {
             original = Stream.generate(() -> rand.nextInt(size)).limit(size).toArray(Integer[]::new);
             sorted = Arrays.copyOf(original, size);
 
-            engine.sort(original);
-            Arrays.sort(sorted);
 
-            assertArrayEquals(original, sorted);
+
+            //engine.sort(original);
+            //Arrays.sort(sorted);
+
+            //assertArrayEquals(original, sorted);
         }
     }
 
@@ -69,9 +65,7 @@ public class SortTest {
         final int max_size = 10000;
 //      testSpeed(max_size, new HeapSort<>(), new ShellSortKnuth<>(), new SelectionSort<>(), new InsertionSort<>());
 //      testSpeed(max_size, new HeapSort<>(), new ShellSortKnuth<>(), new MergeSort<>(), new QuickSort<>(), new IntroSort<>(new HeapSort<Integer>()), new IntroSort<>(new ShellSortKnuth<Integer>()));
-        testSpeed(max_size, new MSDRadixSort());
-        testSpeed(max_size, new LSDRadixSort());
-
+        testSpeed(max_size, new HeapSort<>(), new ShellSortKnuth<>(), new MergeSort<>(), new QuickSort<>(), new IntegerBucketSort(0, max_size), new LSDRadixSort());
     }
 
     @SafeVarargs
@@ -140,5 +134,6 @@ public class SortTest {
 //        testAccuracy(iter, size, new ShellSortPratt<>());
 //        testAccuracy(iter, size, new MSDRadixSort());
 //        testSpeed(new ShellSortKnuth<>(), new ShellSortHibbard<>(), new ShellSortPratt<>());
+//        testSpeed(max_size, new QuickSort<>(), new LSDRadixSort(), new MSDRadixSort());
 //    }
 }

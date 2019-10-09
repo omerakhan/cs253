@@ -43,11 +43,13 @@ public class ShellSortKnuth<T extends Comparable<T>> extends ShellSort<T> {
             if (h <= n)
             {
                 sequence.add(h);
-                //System.out.println(sequence);
             }
             else break;
         }
+
+
     }
+
 
     @Override
     protected int getSequenceStartIndex(int n) {
