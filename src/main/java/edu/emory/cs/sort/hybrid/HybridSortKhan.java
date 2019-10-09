@@ -100,7 +100,7 @@ public class HybridSortKhan<T extends Comparable<T>> implements HybridSort<T> {
                 engineInsertion.sort(input[k]); //merge
                 continue;
             }
-            else if(asCounter <= (-0.75*x))
+            else if(asCounter <= (-0.73*x))
             {
                 engineHibbard.sort(input[k]);  //knuth
                 continue;
