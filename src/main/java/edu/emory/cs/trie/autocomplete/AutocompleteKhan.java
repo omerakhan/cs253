@@ -123,7 +123,7 @@ public class AutocompleteKhan extends Autocomplete<List<String>> {
             System.out.println("Prefix string " + prefix.trim() + " is not a prefix of " + candidate);
             return;
         }
-        //if the node startswithprefix but the prefix isn't in the trie then we add them both in
+        //if the candidate startswithprefix but the prefix isn't in the trie then we add them both in
         else if(find(prefix) == null)
         {
             put(prefix, null);
