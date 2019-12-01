@@ -50,11 +50,11 @@ public class AutocompleteTest {
         expected = List.of("she", "ship", "shell", "school");
         testGetCandidates(ac, eval, prefix, expected);
 
-        prefix = "yahoooowt";
+        prefix = "sh";
         expected = List.of("yahooqt");
         ac.pickCandidate(prefix, "ship");
         ac.pickCandidate(prefix, "   she");
-        ac.pickCandidate(prefix, "   yahoooowte");
+        ac.pickCandidate(prefix, "   hw");
         testGetCandidates(ac, eval, prefix, expected);
 
         System.out.printf("Score: %d/%d\n", eval.correct, eval.total);
