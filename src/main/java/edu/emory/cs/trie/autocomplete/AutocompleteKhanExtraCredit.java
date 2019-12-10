@@ -31,8 +31,8 @@ import java.util.List;
 /**
  * @author Jinho D. Choi ({@code jinho.choi@emory.edu})
  */
-public class AutocompleteKhan extends Autocomplete<List<String>> {
-    public AutocompleteKhan(String dict_file, int max) {
+public class AutocompleteKhanExtraCredit extends Autocomplete<List<String>> {
+    public AutocompleteKhanExtraCredit(String dict_file, int max) {
         super(dict_file, max);
     }
 
@@ -153,12 +153,12 @@ public class AutocompleteKhan extends Autocomplete<List<String>> {
         if(candidate.startsWith(prefix))
         {
             //if the candidate startswithprefix but the prefix isn't in the trie then we add them both in
-             if(find(prefix) == null)
-        {
-            put(prefix, null);
-            prefixNode=find(prefix);
-            put(candidate, null);
-        }
+            if(find(prefix) == null)
+            {
+                put(prefix, null);
+                prefixNode=find(prefix);
+                put(candidate, null);
+            }
             put(candidate,null); //put candidate into trie
             //check to see if the node already has a value and contains the word we're looking for
             //avoids null problem with hasValue
